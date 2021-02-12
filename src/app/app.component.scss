@@ -1,0 +1,23 @@
+@use '_colors';
+@use '~@angular/material/theming';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.layout-container {
+  height: 100%;
+  width: 100%;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-nav-list .mat-list-item.is-active {
+  background: theming.mat-color(colors.$primary, default, 0.15);
+  color: theming.mat-color(colors.$primary, 900);
+}
