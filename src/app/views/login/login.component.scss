@@ -1,0 +1,27 @@
+.card-container {
+  display: flex;
+  overflow: scroll;
+
+  &::before,
+  &::after {
+    content: ' ';
+    flex: 0 0 1rem;
+  }
+}
+
+.mat-display-1 {
+  margin: 1rem 1rem 2rem;
+}
+
+.user-card {
+  flex: 0 0 250px;
+  margin: 1rem 0;
+
+  &:not(:last-of-type) {
+    margin-right: 1rem;
+  }
+
+  .mat-card-image {
+    margin: 0 -16px;
+  }
+}

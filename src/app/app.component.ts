@@ -1,9 +1,13 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AppState } from './models/state';
+import { User } from './models/user';
+import { signOut } from '../app/actions/user';
 
 interface NavLink {
   name: string;
@@ -15,7 +19,7 @@ interface NavLink {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'polling-app';
   links: NavLink[] = [
     {
@@ -37,11 +41,20 @@ export class AppComponent {
   ];
   @ViewChild(MatDrawer) drawer: MatDrawer;
   isSmallScreen$: Observable<boolean>;
+  user$: Observable<User | null>;
 
-  constructor(private router: Router, breakpointObserver: BreakpointObserver) {
+  constructor(
+    private router: Router,
+    breakpointObserver: BreakpointObserver,
+    private store: Store<AppState>
+  ) {
     this.isSmallScreen$ = breakpointObserver
       .observe([Breakpoints.XSmall])
       .pipe(map(({ matches }) => matches));
+  }
+
+  ngOnInit() {
+    this.user$ = this.store.select('user');
   }
 
   route(endpoint: string): void {
@@ -50,5 +63,13 @@ export class AppComponent {
 
   toggleSidenav() {
     this.drawer.toggle();
+  }
+
+  onSignIn() {
+    this.router.navigateByUrl('login');
+  }
+
+  onSignOut() {
+    this.store.dispatch(signOut());
   }
 }

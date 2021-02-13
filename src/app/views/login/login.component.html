@@ -1,0 +1,17 @@
+<h2 class="mat-display-1">Please select a user to continue!</h2>
+
+<div class="card-container">
+  <mat-card
+    *ngFor="let user of users"
+    (click)="onUserClick(user)"
+    class="user-card"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ user.name }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="user.avatarURL" [alt]="user.name + 'Avatar'" />
+    <mat-card-actions>
+      <button mat-button>SIGN IN</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

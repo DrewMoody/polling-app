@@ -11,10 +11,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { LoginModule } from './views/login/login.module';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -27,11 +29,13 @@ import { reducers, metaReducers } from './reducers';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
+    MatMenuModule,
     LayoutModule,
     RouterModule,
     HomeModule,
+    LoginModule,
     StoreModule.forRoot(reducers, {
-      metaReducers
+      metaReducers,
     }),
   ],
   providers: [],

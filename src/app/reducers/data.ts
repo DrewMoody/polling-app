@@ -5,7 +5,7 @@ export const USERS: Record<string, User> = {
   rashmi: {
     id: 'rashmi',
     name: 'Rashmi Manandhar',
-    avatarURL: '',
+    avatarURL: 'assets/images/avi-1.jpg',
     answers: {
       '8xf0y6ziyjabvozdd253nd': 'optionOne',
       '6ni6ok3ym7mf1p33lnez': 'optionTwo',
@@ -17,7 +17,7 @@ export const USERS: Record<string, User> = {
   julian: {
     id: 'julian',
     name: 'Julian Manandhar',
-    avatarURL: '',
+    avatarURL: 'assets/images/avi-2.jpg',
     answers: {
       vthrdm985a262al8qx3do: 'optionOne',
       xj352vofupe1dqz9emx13r: 'optionTwo',
@@ -27,7 +27,7 @@ export const USERS: Record<string, User> = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: '',
+    avatarURL: 'assets/images/avi-3.jpg',
     answers: {
       xj352vofupe1dqz9emx13r: 'optionOne',
       vthrdm985a262al8qx3do: 'optionTwo',

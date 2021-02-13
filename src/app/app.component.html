@@ -8,21 +8,27 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span>Poll.io</span>
-  <span class="example-spacer"></span>
+  <span class="spacer"></span>
+  <mat-menu #appMenu="matMenu" xPosition="before">
+    <ng-template matMenuContent>
+      <button mat-menu-item (click)="onSignOut()">Sign out</button>
+    </ng-template>
+  </mat-menu>
   <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
+    mat-button
+    *ngIf="user$ | async as user; else signIn"
+    [matMenuTriggerFor]="appMenu"
   >
-    <mat-icon>favorite</mat-icon>
+    <img
+      class="button-avatar"
+      [src]="user.avatarURL"
+      [alt]="user.name + 'avatar'"
+    />
+    {{ user.name }}
   </button>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-  >
-    <mat-icon>share</mat-icon>
-  </button>
+  <ng-template #signIn>
+    <button mat-button (click)="onSignIn()">Sign in</button>
+  </ng-template>
 </mat-toolbar>
 <mat-drawer-container class="layout-container" autosize>
   <mat-drawer
