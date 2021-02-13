@@ -4,10 +4,11 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { AppState } from './models/state';
 import { User } from './models/user';
 import { signOut } from '../app/actions/user';
+import { selectActiveUser } from './selectors/active-user';
 
 interface NavLink {
   name: string;
@@ -34,10 +35,6 @@ export class AppComponent implements OnInit {
       name: 'Leaderboard',
       endpoint: '/leaderboard',
     },
-    {
-      name: 'Questions',
-      endpoint: '/questions',
-    },
   ];
   @ViewChild(MatDrawer) drawer: MatDrawer;
   isSmallScreen$: Observable<boolean>;
@@ -54,7 +51,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user$ = this.store.select('user');
+    this.user$ = this.store.select(selectActiveUser).pipe(
+      tap((user) => {
+        // TODO: Handle with an ngrx/effect instead?
+        if (user == null) {
+          this.router.navigateByUrl('login');
+        }
+      })
+    );
   }
 
   route(endpoint: string): void {

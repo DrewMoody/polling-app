@@ -1,1 +1,30 @@
-<p>add-question works!</p>
+<h2 class="mat-display-1 page-title">Add Question</h2>
+<form [formGroup]="questionForm" (ngSubmit)="onSubmit()" class="side-margin">
+  <h3 class="text-bold wyr-text">Would you Rather...</h3>
+  <mat-form-field>
+    <mat-label>Option One:</mat-label>
+    <textarea
+      formControlName="optionOne"
+      matInput
+      placeholder="Ex. Feel a little hot"
+    ></textarea>
+  </mat-form-field>
+  <p class="text-bold or-text">OR</p>
+  <mat-form-field>
+    <mat-label>Option Two:</mat-label>
+    <textarea
+      formControlName="optionTwo"
+      matInput
+      placeholder="Ex. Feel a little cold"
+    ></textarea>
+  </mat-form-field>
+  <button
+    mat-flat-button
+    color="accent"
+    class="button"
+    type="submit"
+    [disabled]="questionForm.invalid"
+  >
+    Submit
+  </button>
+</form>

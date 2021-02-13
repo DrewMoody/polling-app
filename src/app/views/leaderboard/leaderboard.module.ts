@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { LeaderboardRoutingModule } from './leaderboard-routing.module';
 import { LeaderboardComponent } from './leaderboard.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [LeaderboardComponent],
   imports: [
     CommonModule,
-    LeaderboardRoutingModule
-  ]
+    LeaderboardRoutingModule,
+    MatTableModule,
+    MatSortModule,
+  ],
 })
-export class LeaderboardModule { }
+export class LeaderboardModule {}

@@ -16,6 +16,10 @@ $theme: theming.mat-light-theme(
 
 @include theming.angular-material-theme($theme);
 
+/**
+* RESET PREFS
+*/
+
 html,
 body {
   height: 100%;
@@ -59,4 +63,25 @@ strong {
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+/**
+* GLOBAL STYLES
+* styles marked !important are mat style overrides
+*/
+
+.page-title {
+  margin: 1rem 1rem 2rem !important;
+}
+
+.side-margin {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.button-avatar {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
 }

@@ -1,0 +1,70 @@
+@use '_colors';
+@use '~@angular/material/theming';
+
+:host {
+  .questions-header {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      margin: 0;
+    }
+
+    .mat-icon-button {
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+
+      .mat-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+      }
+    }
+
+    > .submit-button {
+      margin-left: auto;
+      flex: 0 0 auto;
+    }
+  }
+
+  .asking-user {
+    display: flex;
+    align-items: center;
+
+    .button-avatar {
+      margin: 0 8px;
+    }
+  }
+
+  .option {
+    min-height: 64px;
+    margin: 16px;
+    padding: 16px;
+    color: rgba(theming.mat-color(colors.$primary, default-contrast), 0.9);
+    font-weight: 500;
+    border-radius: 8px;
+
+    .option-text {
+      display: flex;
+      align-items: center;
+
+      .mat-icon {
+        margin-right: 8px;
+      }
+    }
+
+    &.option-1 {
+      background: theming.mat-color(colors.$primary, 400);
+    }
+
+    &.option-2 {
+      background: theming.mat-color(colors.$primary, 900);
+    }
+
+    &.selectable {
+      cursor: pointer;
+    }
+  }
+}

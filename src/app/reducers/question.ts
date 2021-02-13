@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as QuestionActions from '../actions/question';
 import { Question } from '../models/question';
-import { QUESTIONS } from './data';
+import { QUESTIONS } from '../constants/data';
 
 export type State = Record<string, Question>;
 
@@ -15,9 +15,21 @@ const questionReducer = createReducer(
       [question.id]: question,
     };
   }),
-  on(QuestionActions.questionAnswered, (state, { question, answer }) => {
-    return state;
-  })
+  on(
+    QuestionActions.questionAnswered,
+    (state, { userId, questionId, answerId }) => {
+      return {
+        ...state,
+        [questionId]: {
+          ...state[questionId],
+          [answerId]: {
+            ...state[questionId][answerId],
+            votes: [...state[questionId][answerId].votes, userId],
+          },
+        },
+      };
+    }
+  )
 );
 
 export function reducer(state: State | undefined, action: Action) {

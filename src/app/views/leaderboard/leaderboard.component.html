@@ -1,1 +1,47 @@
-<p>leaderboard works!</p>
+<h2 class="mat-display-1 page-title">Leaderboard</h2>
+<div class="table-container">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="total"
+    matSortDirection="desc"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+      <td mat-cell *matCellDef="let user">
+        <div class="user-container">
+          <img
+            class="button-avatar"
+            [src]="user.avatarURL"
+            [alt]="user.name + 'avatar'"
+          />
+          {{ user.name }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="questions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Questions</th>
+      <td mat-cell *matCellDef="let user">{{ user.questions }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="answers">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Answers</th>
+      <td mat-cell *matCellDef="let user">
+        {{ user.answers }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+      <td mat-cell *matCellDef="let user">
+        {{ user.total }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+  </table>
+</div>

@@ -6,14 +6,14 @@ import {
   MetaReducer,
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import { User } from '../models/user';
-import { Question } from '../models/question';
-import { reducer as userReducer } from './user';
+import { reducer as activeUserReducer } from './active-user';
+import { reducer as usersReducer } from './users';
 import { reducer as questionReducer } from './question';
 import { AppState } from '../models/state';
 
 export const reducers: ActionReducerMap<AppState> = {
-  user: userReducer,
+  activeUser: activeUserReducer,
+  users: usersReducer,
   questions: questionReducer,
 };
 

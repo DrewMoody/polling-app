@@ -7,5 +7,5 @@ export const questionAsked = createAction(
 );
 export const questionAnswered = createAction(
   '[Question] Question Answered',
-  props<{ question: Question; answer: QuestionOption }>()
+  props<{ userId: string; questionId: string; answerId: string }>()
 );

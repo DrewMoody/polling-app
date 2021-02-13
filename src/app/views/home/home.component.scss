@@ -1,0 +1,68 @@
+@use '_colors';
+@use '~@angular/material/theming';
+
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > button {
+    margin-right: 1rem;
+  }
+}
+
+.mat-list-option {
+  background: theming.mat-color(colors.$primary, 900);
+  background: linear-gradient(
+    -75deg,
+    theming.mat-color(colors.$primary, 900) 50%,
+    theming.mat-color(colors.$primary, 400) 50%,
+    theming.mat-color(colors.$primary, 400) 100%
+  );
+  height: fit-content;
+  min-height: 64px;
+  border-radius: 8px;
+  margin: 8px 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  &.is-selected {
+    background: theming.mat-color(colors.$primary, 700);
+    background: linear-gradient(
+      -75deg,
+      theming.mat-color(colors.$primary, 700) 50%,
+      theming.mat-color(colors.$primary, 300) 50%,
+      theming.mat-color(colors.$primary, 300) 100%
+    );
+  }
+
+  .question-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(theming.mat-color(colors.$primary, default-contrast), 0.9);
+    font-weight: 500;
+
+    p {
+      margin: 0;
+      max-width: calc(50% - 1rem);
+
+      &:last-child {
+        text-align: end;
+      }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .mat-list-item-content {
+    width: 100%;
+    min-height: inherit;
+  }
+
+  .mat-list-text {
+    padding: 0 !important;
+  }
+}

@@ -1,0 +1,21 @@
+.table-container {
+  margin: 1rem;
+
+  .mat-table {
+    width: 100%;
+
+    .mat-row {
+      height: 56px;
+    }
+
+    th,
+    td {
+      vertical-align: middle;
+    }
+
+    .user-container {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

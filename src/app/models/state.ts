@@ -2,6 +2,7 @@ import { Question } from './question';
 import { User } from './user';
 
 export interface AppState {
-  user: User;
+  activeUser: null | string;
+  users: Record<string, User>;
   questions: Record<string, Question>;
 }

@@ -33,7 +33,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'questions',
+    path: 'questions/:questionId',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./views/questions/questions.module').then(

@@ -1,1 +1,57 @@
-<p>questions works!</p>
+<ng-container *ngIf="questionState$ | async as state">
+  <div class="questions-header page-title">
+    <button
+      mat-icon-button
+      class="menu-icon"
+      aria-label="go back"
+      *ngIf="canGoBack"
+      (click)="onGoBack()"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <h2 class="mat-display-1">Would You Rather...</h2>
+    <button
+      mat-flat-button
+      color="accent"
+      (click)="onSubmit()"
+      *ngIf="!state.activeUserAnswer && !!selectedOptionId"
+      class="submit-button"
+    >
+      Submit
+    </button>
+  </div>
+  <div class="asking-user side-margin">
+    <span class="mat-title no-margin">Proposed by:</span>
+    <img
+      class="button-avatar"
+      [src]="state.askingUser.avatarURL"
+      [alt]="state.askingUser.name + 'avatar'"
+    />
+    <span class="mat-subheading-2 no-margin">{{ state.askingUser.name }}</span>
+  </div>
+  <div
+    *ngFor="let option of state.options; let i = index"
+    [ngClass]="
+      'side-margin option option-' +
+      (i + 1) +
+      (!!state.activeUserAnswer ? ' ' : ' selectable ')
+    "
+    (click)="!state.activeUserAnswer && selectOption(option.optionId)"
+    matRipple
+    [matRippleDisabled]="!!state.activeUserAnswer"
+  >
+    <p class="option-text no-margin mat-title">
+      <mat-icon
+        *ngIf="
+          state.activeUserAnswer === option.optionId ||
+          selectedOptionId === option.optionId
+        "
+        >check_circle</mat-icon
+      >{{ option.text }}
+    </p>
+    <p class="no-margin">
+      <span class="mat-small">Votes: </span>{{ option.votes }} |
+      {{ option.pct }}%
+    </p>
+  </div>
+</ng-container>
