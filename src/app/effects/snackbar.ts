@@ -7,7 +7,7 @@ import { signIn, signOut } from '../actions/user';
 
 @Injectable()
 export class SnackBarEffects {
-  duration: number = 2000;
+  readonly duration: number = 2000;
 
   userSignOut$ = createEffect(
     () =>

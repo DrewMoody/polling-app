@@ -2,10 +2,12 @@ import { KeyValue } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Question } from 'src/app/models/question';
 import { AppState } from 'src/app/models/state';
 import { UserQuestions } from 'src/app/models/user-questions';
+import { selectActiveUserId } from 'src/app/selectors/active-user';
 import { selectQuestionsAnswered } from 'src/app/selectors/user-questions';
 
 @Component({
@@ -15,11 +17,17 @@ import { selectQuestionsAnswered } from 'src/app/selectors/user-questions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  userQuestions$: Observable<UserQuestions>;
+  userQuestions$: Observable<{
+    activeUserId: string;
+    questions: UserQuestions;
+  }>;
   selectedQuestion: Question | null;
 
   constructor(private store: Store<AppState>, private router: Router) {
-    this.userQuestions$ = store.select(selectQuestionsAnswered);
+    this.userQuestions$ = combineLatest([
+      store.select(selectActiveUserId),
+      store.select(selectQuestionsAnswered),
+    ]).pipe(map(([activeUserId, questions]) => ({ activeUserId, questions })));
   }
 
   ngOnInit(): void {}

@@ -12,7 +12,7 @@ import { selectActiveUserId } from './active-user';
  * HELPER FNS FOR COMPOSING SELECT
  */
 const getQuestionsArr = (questions: Record<string, Question>) => {
-  return Object.values(questions).sort((a, b) => a.timestamp - b.timestamp);
+  return Object.values(questions).sort((a, b) => b.timestamp - a.timestamp);
 };
 
 const groupByAnswered = (userId: string) => (question: Question) =>

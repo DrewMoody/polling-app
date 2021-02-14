@@ -8,6 +8,7 @@ export interface QuestionInfo {
   text: string;
   votes: number;
   pct: number;
+  voters: string;
 }
 
 export interface QuestionsState {
