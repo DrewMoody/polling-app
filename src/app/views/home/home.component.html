@@ -34,7 +34,7 @@
           (click)="setSelectedQuestion(question)"
         >
           <div class="question-options">
-            <p class="reverse">
+            <p>
               <mat-icon
                 *ngIf="
                   question.optionOne.votes.includes(userQuestions.activeUserId)
@@ -42,7 +42,7 @@
                 >check_circle</mat-icon
               >{{ question.optionOne.text }}
             </p>
-            <p>
+            <p class="reverse">
               <mat-icon
                 *ngIf="
                   question.optionTwo.votes.includes(userQuestions.activeUserId)

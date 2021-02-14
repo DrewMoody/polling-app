@@ -50,13 +50,10 @@
       max-width: calc(50% - 1rem);
       display: flex;
       align-items: center;
-
-      &.reverse {
-        flex-direction: row-reverse;
-      }
+      flex-direction: row-reverse;
 
       mat-icon {
-        margin: 0 6px;
+        margin-left: 6px;
         color: rgba(theming.mat-color(colors.$primary, default-contrast), 0.6);
       }
 
