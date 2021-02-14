@@ -17,6 +17,10 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { LoginModule } from './views/login/login.module';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './effects/user';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { QuestionEffects } from './effects/questions';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -30,6 +34,7 @@ import { LoginModule } from './views/login/login.module';
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
+    MatSnackBarModule,
     LayoutModule,
     RouterModule,
     HomeModule,
@@ -37,6 +42,7 @@ import { LoginModule } from './views/login/login.module';
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
+    EffectsModule.forRoot([UserEffects, QuestionEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

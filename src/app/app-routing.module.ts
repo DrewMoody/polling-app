@@ -13,10 +13,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
     path: 'leaderboard',
     canActivate: [AuthGuard],
     loadChildren: () =>
@@ -39,6 +35,10 @@ const routes: Routes = [
       import('./views/questions/questions.module').then(
         (m) => m.QuestionsModule
       ),
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: '404',

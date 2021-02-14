@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { Store } from '@ngrx/store';
 import { first, map } from 'rxjs/operators';
 import { AppState } from '../models/state';
@@ -12,10 +17,19 @@ import { selectActiveUser } from '../selectors/active-user';
 export class AuthGuardService implements CanActivate {
   constructor(private store: Store<AppState>, private router: Router) {}
 
-  canActivate() {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.store.select(selectActiveUser).pipe(
       first(),
-      map((user) => !!this.isAuth(user) || this.router.parseUrl('/login'))
+      map((user) => {
+        if (!!this.isAuth(user)) {
+          return true;
+        } else {
+          this.router.navigate(['/login'], {
+            queryParams: { redirectURL: state.url },
+          });
+          return false;
+        }
+      })
     );
   }
 

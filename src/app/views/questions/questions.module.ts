@@ -6,7 +6,6 @@ import { QuestionsComponent } from './questions.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [QuestionsComponent],
@@ -16,7 +15,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     MatButtonModule,
     MatRippleModule,
-    MatSnackBarModule,
   ],
 })
 export class QuestionsModule {}

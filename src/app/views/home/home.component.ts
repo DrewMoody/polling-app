@@ -8,11 +8,6 @@ import { AppState } from 'src/app/models/state';
 import { UserQuestions } from 'src/app/models/user-questions';
 import { selectQuestionsAnswered } from 'src/app/selectors/user-questions';
 
-/**
- * Toggle between answered and unanswered polls
- * Arranged from most recently created to least recently created
- * Unanswered questions shown by default
- */
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

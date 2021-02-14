@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 import { QuestionsState } from './models';
 import { mapAppStateToQuestionState } from './helpers';
 import { questionAnswered } from 'src/app/actions/question';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 const isNil = (param: any) => param == null;
 
@@ -27,8 +26,7 @@ export class QuestionsComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
-    private location: Location,
-    private snackbar: MatSnackBar
+    private location: Location
   ) {
     this.questionState$ = route.params.pipe(
       map((route) => route.questionId),
@@ -39,7 +37,7 @@ export class QuestionsComponent implements OnInit {
           tap(
             (state) =>
               (this.submissionInformation = {
-                userId: state.activeUser.id,
+                userId: state.activeUser?.id,
                 questionId,
               })
           )
@@ -76,9 +74,5 @@ export class QuestionsComponent implements OnInit {
     const answer = { userId, questionId, answerId };
 
     this.store.dispatch(questionAnswered(answer));
-
-    this.snackbar.open('Vote added successfully!', null, {
-      duration: 2500,
-    });
   }
 }

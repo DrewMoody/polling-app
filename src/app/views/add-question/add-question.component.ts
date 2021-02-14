@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { first } from 'rxjs/operators';
 import { questionAsked } from 'src/app/actions/question';
@@ -19,11 +17,7 @@ export class AddQuestionComponent implements OnInit {
   questionForm: FormGroup;
   private author: string;
 
-  constructor(
-    private store: Store<AppState>,
-    private router: Router,
-    private snackbar: MatSnackBar
-  ) {
+  constructor(private store: Store<AppState>) {
     this.questionForm = new FormGroup({
       optionOne: new FormControl('', [Validators.required]),
       optionTwo: new FormControl('', [Validators.required]),
@@ -37,7 +31,6 @@ export class AddQuestionComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // TODO: snackbar and router stuff should be handle with effects!
   onSubmit() {
     const { optionOne, optionTwo } = this.questionForm.value;
     const question: Question = {
@@ -54,11 +47,5 @@ export class AddQuestionComponent implements OnInit {
       },
     };
     this.store.dispatch(questionAsked({ question }));
-
-    this.snackbar.open('Question added successfully!', null, {
-      duration: 2500,
-    });
-
-    this.router.navigateByUrl('');
   }
 }

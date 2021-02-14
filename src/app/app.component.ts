@@ -51,14 +51,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user$ = this.store.select(selectActiveUser).pipe(
-      tap((user) => {
-        // TODO: Handle with an ngrx/effect instead?
-        if (user == null) {
-          this.router.navigateByUrl('login');
-        }
-      })
-    );
+    this.user$ = this.store.select(selectActiveUser);
   }
 
   route(endpoint: string): void {
