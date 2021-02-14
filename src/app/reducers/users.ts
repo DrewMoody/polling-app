@@ -2,6 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as QuestionActions from '../actions/question';
 import { User } from '../models/user';
 import { USERS } from '../constants/data';
+import { StickyStyler } from '@angular/cdk/table';
 
 export type State = Record<string, User>;
 
@@ -23,9 +24,17 @@ const activeUserReducer = createReducer(
         },
       };
     }
-  )
+  ),
+  on(QuestionActions.questionAsked, (state, { question }) => {
+    return {
+      ...state,
+      [question.author]: {
+        ...state[question.author],
+        questions: [...state[question.author].questions, question.id],
+      },
+    };
+  })
 );
-
 export function reducer(state: State | undefined, action: Action) {
   return activeUserReducer(state, action);
 }
