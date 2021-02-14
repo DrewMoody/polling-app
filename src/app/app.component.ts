@@ -21,6 +21,7 @@ interface NavLink {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  @ViewChild(MatDrawer) drawer: MatDrawer;
   title = 'polling-app';
   links: NavLink[] = [
     {
@@ -36,7 +37,6 @@ export class AppComponent implements OnInit {
       endpoint: '/leaderboard',
     },
   ];
-  @ViewChild(MatDrawer) drawer: MatDrawer;
   isSmallScreen$: Observable<boolean>;
   user$: Observable<User | null>;
 
