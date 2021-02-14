@@ -2,7 +2,6 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as QuestionActions from '../actions/question';
 import { User } from '../models/user';
 import { USERS } from '../constants/data';
-import { StickyStyler } from '@angular/cdk/table';
 
 export type State = Record<string, User>;
 
