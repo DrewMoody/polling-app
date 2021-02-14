@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,9 +17,9 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { LoginModule } from './views/login/login.module';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './effects/user';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { QuestionEffects } from './effects/questions';
+import { RedirectEffects } from './effects/redirect';
+import { SnackBarEffects } from './effects/snackbar';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -42,7 +41,7 @@ import { QuestionEffects } from './effects/questions';
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    EffectsModule.forRoot([UserEffects, QuestionEffects]),
+    EffectsModule.forRoot([SnackBarEffects, RedirectEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

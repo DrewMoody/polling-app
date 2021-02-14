@@ -48,6 +48,17 @@
     p {
       margin: 0;
       max-width: calc(50% - 1rem);
+      display: flex;
+      align-items: center;
+
+      &.reverse {
+        flex-direction: row-reverse;
+      }
+
+      mat-icon {
+        margin: 0 6px;
+        color: rgba(theming.mat-color(colors.$primary, default-contrast), 0.6);
+      }
 
       &:last-child {
         text-align: end;

@@ -66,5 +66,10 @@
     &.selectable {
       cursor: pointer;
     }
+
+    .voters-list {
+      display: block;
+      color: rgba(theming.mat-color(colors.$primary, default-contrast), 0.7);
+    }
   }
 }

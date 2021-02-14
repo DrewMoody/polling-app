@@ -10,32 +10,49 @@
   </button>
 </div>
 
-<mat-tab-group
-  mat-align-tabs="start"
-  (selectedTabChange)="setSelectedQuestion(null)"
-  class="side-margin"
->
-  <mat-tab
-    *ngFor="
-      let userQuestion of userQuestions$ | async | keyvalue: userQuestionsSort
-    "
-    [label]="userQuestion.key | titlecase"
+<ng-container *ngIf="userQuestions$ | async as userQuestions">
+  <mat-tab-group
+    mat-align-tabs="start"
+    (selectedTabChange)="setSelectedQuestion(null)"
+    class="side-margin"
   >
-    <mat-selection-list [multiple]="false">
-      <mat-list-option
-        *ngFor="let question of userQuestion.value"
-        [value]="question.id"
-        [ngClass]="{
-          'question-entry no-select': true,
-          'is-selected mat-elevation-z8': question === selectedQuestion
-        }"
-        (click)="setSelectedQuestion(question)"
-      >
-        <div class="question-options">
-          <p>{{ question.optionOne.text }}</p>
-          <p>{{ question.optionTwo.text }}</p>
-        </div>
-      </mat-list-option>
-    </mat-selection-list>
-  </mat-tab>
-</mat-tab-group>
+    <mat-tab
+      *ngFor="
+        let userQuestion of userQuestions.questions
+          | keyvalue: userQuestionsSort
+      "
+      [label]="userQuestion.key | titlecase"
+    >
+      <mat-selection-list [multiple]="false">
+        <mat-list-option
+          *ngFor="let question of userQuestion.value"
+          [value]="question.id"
+          [ngClass]="{
+            'question-entry no-select': true,
+            'is-selected mat-elevation-z8': question === selectedQuestion
+          }"
+          (click)="setSelectedQuestion(question)"
+        >
+          <div class="question-options">
+            <p class="reverse">
+              <mat-icon
+                *ngIf="
+                  question.optionOne.votes.includes(userQuestions.activeUserId)
+                "
+                >check_circle</mat-icon
+              >{{ question.optionOne.text }}
+            </p>
+            <p>
+              <mat-icon
+                *ngIf="
+                  question.optionTwo.votes.includes(userQuestions.activeUserId)
+                "
+                >check_circle</mat-icon
+              >{{ question.optionTwo.text }}
+            </p>
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
